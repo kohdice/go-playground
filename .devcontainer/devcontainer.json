@@ -1,0 +1,55 @@
+{
+  "name": "Golang",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "golang",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.colorTheme": "One Dark Pro",
+        "workbench.iconTheme": "material-icon-theme",
+        "editor.fontFamily": "Hack Nerd Font",
+        "terminal.integrated.fontFamily": "Hack Nerd Font",
+        "editor.formatOnSave": true,
+        "go.toolsManagement.checkForUpdates": "off",
+        "go.gopath": "/go",
+        "go.gocodeAutoBuild": true,
+        "go.formatTool": "gofmt",
+        "go.useLanguageServer": true,
+        "go.languageServerFlags": [
+          "-rpc.trace",
+          "serve",
+          "--debug=localhost:6060",
+        ],
+        "[go]": {
+          "editor.snippetSuggestions": "none",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+          }
+        },
+        "gopls": {
+          "usePlaceholders": true,
+          "completeUnimported": true,
+          "deepCompletion": true,
+          "analyses": {"unusedparam": true}
+        },
+        "dotfiles.repository": "kohdice/dotfiles-devcontainer",
+        "dotfiles.targetPath": "~/dotfiles",
+        "dotfiles.installCommand": "~/dotfiles/install.sh"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "golang.Go",
+        "golang.go-nightly",
+        "mikestead.dotenv",
+        "yzhang.markdown-all-in-one",
+        "sohamkamani.code-eol",
+        "streetsidesoftware.code-spell-checker",
+        "gruntfuggly.todo-tree"
+      ]
+    }
+  }
+}
