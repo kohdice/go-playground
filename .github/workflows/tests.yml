@@ -1,0 +1,20 @@
+name: Continuous integration for Go builds
+
+run-name: ${{ github.actor }} is testing out Go builds
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build container
+        run: |
+          docker-compose up -build
