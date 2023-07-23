@@ -1,0 +1,27 @@
+name: Continuous Integration of go-playground
+
+run-name: ${{ github.actor }} is testing out go-playground
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ["1.20"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Test
+        run: go test -v ./cmd/playground
