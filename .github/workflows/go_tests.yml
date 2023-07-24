@@ -23,5 +23,9 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+      - name: Lint
+        run: |
+          go vet -v ./...
       - name: Test
-        run: go test -v ./cmd/playground
+        run: |
+          go test -v ./...
