@@ -1,6 +1,6 @@
-name: Continuous integration for Go builds
+name: Build
 
-run-name: ${{ github.actor }} is testing out Go builds
+run-name: ${{ github.actor }} is testing out build of go-playground
 
 on:
   push:
@@ -17,4 +17,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Build container
         run: |
-          docker-compose up --build
+          docker compose up --build
