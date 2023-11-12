@@ -1,6 +1,6 @@
-name: Continuous integration for Go builds
+name: Build
 
-run-name: ${{ github.actor }} is testing out Go builds
+run-name: ${{ github.actor }} is testing out build of go-playground
 
 on:
   push:

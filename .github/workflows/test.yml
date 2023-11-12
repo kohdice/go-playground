@@ -1,4 +1,4 @@
-name: Continuous Integration of go-playground
+name: Test
 
 run-name: ${{ github.actor }} is testing out go-playground
 
