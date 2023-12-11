@@ -1,3 +1,4 @@
+BIN := go-playground
 .DEFAULT_GOAL:=all
 
 .PHONY: all
@@ -27,8 +28,8 @@ go.mod:
 
 .PHONY: test
 test:
-	@ go test ./...
+	@ go test -v ./...
 
 .PHONY: build
 build:
-	@ go build -trimpath -o playground ./cmd/playground
+	@ go build -trimpath -o $(BIN)
