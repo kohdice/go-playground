@@ -12,7 +12,8 @@ func TestCalc(t *testing.T) {
 		rhs  int
 		want int
 	}{
-		{name: "Sample test", lhs: 1, rhs: 1, want: 2},
+		{name: "Test 1", lhs: 1, rhs: 1, want: 2},
+		{name: "Test 2", lhs: 2, rhs: 2, want: 4},
 	}
 
 	for _, tc := range tests {

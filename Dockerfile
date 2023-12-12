@@ -1,7 +1,7 @@
 FROM golang:1.21-alpine AS builder
 
 RUN apk update && apk upgrade \
-    && apk --update add git make bash
+  && apk --update add --no-cache git make bash
 
 WORKDIR /app
 
@@ -13,6 +13,6 @@ FROM alpine:latest
 
 WORKDIR /app
 
-COPY --from=builder /app/playground /app
+COPY --from=builder /app /app
 
-CMD ["/app/playground"]
+CMD ["/app/go-playground"]

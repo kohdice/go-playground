@@ -1,10 +1,8 @@
 package main
 
-import "fmt"
-
-func Calc(x, y int) int {
-	return x + y
-}
+import (
+	"fmt"
+)
 
 func main() {
 	fmt.Println("Hello World")
