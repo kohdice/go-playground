@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check Actor
-        if: github.actor != "kohdice"
+        if: github.actor != 'kohdice'
         run: |
           echo "Error: ${{ github.actor }} does not have permission to release."
           exit 1
