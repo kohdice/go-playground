@@ -18,14 +18,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check Actor
-        if: github.actor != 'kohdice'
+        if: ${{ github.actor != "kohdice" }}
         run: |
-          echo "${{ github.actor }} does not have permission to release."
-          exit 1
-      - name: Check Branch
-        if: github.ref != 'refs/heads/main'
-        run: |
-          echo "Cannot release from a branch other than the main branch. Executed branch: ${{ github.ref }}"
+          echo "Error: ${{ github.actor }} does not have permission to release."
           exit 1
       - name: Set up Go
         uses: actions/setup-go@v5
