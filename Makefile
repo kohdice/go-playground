@@ -1,9 +1,12 @@
-BIN := go-playground
+BIN := ./bin/playground
 ifeq ($(OS),Windows_NT)
 BIN := $(BIN).exe
 endif
 CURRENT_REVISION := $(shell git rev-parse --short HEAD)
 BUILD_LDFLAGS := "-s -w -X main.revision=$(CURRENT_REVISION)"
+
+.PHONY: all
+all: clean tidy build
 
 .PHONY: build
 build:
@@ -19,11 +22,11 @@ clean:
 
 .PHONY: fmt
 fmt:
-	go fmt ./...
+	golangci-lint fmt
 
 .PHONY: lint
 lint:
-	golangci-lint run ./...
+	golangci-lint run
 
 .PHONY: test
 test:
