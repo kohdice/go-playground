@@ -1,18 +1,41 @@
-FROM golang:1.24-alpine AS builder
+# syntax=docker/dockerfile:1
 
-RUN apk update && apk upgrade \
-  && apk --update add --no-cache git make bash
+# Build stage
+ARG GO_VERSION=1.24.1
+FROM --platform=$BUILDPLATFORM golang:${GO_VERSION} AS build
+WORKDIR /src
 
-WORKDIR /app
+RUN --mount=type=cache,target=/go/pkg/mod/ \
+    --mount=type=bind,source=go.mod,target=go.mod \
+    go mod download -x
 
-COPY . .
+ARG TARGETARCH
 
-RUN make build
+RUN --mount=type=cache,target=/go/pkg/mod/ \
+    --mount=type=bind,target=. \
+    CGO_ENABLED=0 GOARCH=$TARGETARCH go build -o /bin/playground .
 
-FROM alpine:latest
+# Final stage
+FROM alpine:latest AS final
 
-WORKDIR /app
+RUN --mount=type=cache,target=/var/cache/apk \
+    apk --update add \
+    ca-certificates \
+    tzdata \
+    && \
+    update-ca-certificates
 
-COPY --from=builder /app /app
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
+USER appuser
 
-CMD ["/app/go-playground"]
+COPY --from=build /bin/playground /bin/
+
+ENTRYPOINT [ "/bin/playground" ]
