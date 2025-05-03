@@ -1,3 +1,3 @@
 module github.com/kohdice/go-playground
 
-go 1.24.1
+go 1.24.2
