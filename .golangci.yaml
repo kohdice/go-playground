@@ -1,5 +1,4 @@
 version: "2"
-
 linters:
   default: "none"
   enable:
@@ -10,11 +9,13 @@ linters:
     - "unused"
   exclusions:
     warn-unused: true
-
 formatters:
   enable:
+    - "gci"
     - "gofmt"
+    - "gofumpt"
     - "goimports"
+    - "golines"
   settings:
     goimports:
       local-prefixes:
